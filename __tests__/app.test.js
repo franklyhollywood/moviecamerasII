@@ -30,51 +30,51 @@ describe('app routes', () => {
 
     test('returns moviecameras', async() => {
 
-      const expectation = [ 
+      const expectation = [
         {
           'id': 1,
           'make': 'Beaulieu',
           'model': '9008S',
           'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
           'year_made': 1993,
-          'sound': true
+          'sound': true,
+          'lens_type': 'C-mount Lens'
         },
-        
-        {
-          'id': 2,
-          'make': 'Cannon',
-          'model': '1014XLS',
-          'image': 'https://global.canon/ja/c-museum/wp-content/uploads/2015/05/cine300_b.jpg',
-          'year_made': 1979,
-          'sound': true
-        },
-        
-        {
-          'id': 3,
-          'make': 'Elmo',
-          'model': '1012SXL',
-          'image': 'http://www.mondofoto.com/cameras/Elmo_1012S-XL_2a.jpg',
-          'year_made': 1978,
-          'sound': true
-        },
-        
-        {
-          'id': 4,
-          'make': 'Leicina',
-          'model': 'Special',
-          'image': 'https://lhsa.org/wp-content/uploads/2019/03/Leicina-Special-with-6-66mm-f_1.8-Leitz-Optivaron-zoom-lens-960x430.jpg',
-          'year_made': 1972,
-          'sound': true
-        },
-        
         {
           'id': 5,
           'make': 'Nizo',
           'model': '6080',
           'image': 'https://www.super8camera.com/images/nizo-6080.jpg',
           'year_made': 1980,
-          'sound': true
-           
+          'sound': true,
+          'lens_type': 'Fixed lens'
+        },
+        {
+          'id': 3,
+          'make': 'Elmo',
+          'model': '1012SXL',
+          'image': 'http://www.mondofoto.com/cameras/Elmo_1012S-XL_2a.jpg',
+          'year_made': 1978,
+          'sound': true,
+          'lens_type': 'Fixed lens'
+        },
+        {
+          'id': 2,
+          'make': 'Cannon',
+          'model': '1014XLS',
+          'image': 'https://global.canon/ja/c-museum/wp-content/uploads/2015/05/cine300_b.jpg',
+          'year_made': 1979,
+          'sound': true,
+          'lens_type': 'Fixed lens'
+        },
+        {
+          'id': 4,
+          'make': 'Leicina',
+          'model': 'Special',
+          'image': 'https://lhsa.org/wp-content/uploads/2019/03/Leicina-Special-with-6-66mm-f_1.8-Leitz-Optivaron-zoom-lens-960x430.jpg',
+          'year_made': 1972,
+          'sound': true,
+          'lens_type': 'Leica M Mount'
         }
       ]; 
 
@@ -91,14 +91,15 @@ describe('app routes', () => {
     test('returns one moviecameras', async() => {
 
       const expectation =  
-        {
-          'id': 1,
-          'make': 'Beaulieu',
-          'model': '9008S',
-          'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
-          'year_made': 1993,
-          'sound': true
-        };
+      {
+        'id': 1,
+        'make': 'Beaulieu',
+        'model': '9008S',
+        'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
+        'year_made': 1993,
+        'sound': true,
+        'lens_type': 'C-mount Lens'
+      };
         
       const data = await fakeRequest(app)
         .get('/moviecamerasII/1')
@@ -120,7 +121,8 @@ describe('app routes', () => {
           'model': 'testmodel',
           'image': 'testimage',
           'year_made': 1993,
-          'sound': true
+          'sound': true,
+          'lens_id': 2
         };
       const body = {
         'make': 'testmake',
@@ -148,7 +150,8 @@ describe('app routes', () => {
           'model': 'testmodel',
           'image': 'https://www.google.com/imgres?imgurl=http%3A%2F%2Fsuper8wiki.com%2Fimages%2F9%2F98%2FBeaulieu9008S_16-9.JPG&imgrefurl=http%3A%2F%2Fsuper8wiki.com%2Findex.php%2FBeaulieu_9008_S_16%3A9&tbnid=IJn4xG5_yRJ-MM&vet=12ahUKEwjTqdm366fzAhWzAzQIHR80BZoQMygAegUIARCEAQ..i&docid=jXpgENO0Jw8Y0M&w=500&h=375&itg=1&q=beaulieu%209008S&ved=2ahUKEwjTqdm366fzAhWzAzQIHR80BZoQMygAegUIARCEAQ',
           'year_made': 1993,
-          'sound': true
+          'sound': true,
+          'lens_id': 2
         };
       const body = {
         
@@ -156,7 +159,8 @@ describe('app routes', () => {
         'model': 'testmodel',
         'image': 'https://www.google.com/imgres?imgurl=http%3A%2F%2Fsuper8wiki.com%2Fimages%2F9%2F98%2FBeaulieu9008S_16-9.JPG&imgrefurl=http%3A%2F%2Fsuper8wiki.com%2Findex.php%2FBeaulieu_9008_S_16%3A9&tbnid=IJn4xG5_yRJ-MM&vet=12ahUKEwjTqdm366fzAhWzAzQIHR80BZoQMygAegUIARCEAQ..i&docid=jXpgENO0Jw8Y0M&w=500&h=375&itg=1&q=beaulieu%209008S&ved=2ahUKEwjTqdm366fzAhWzAzQIHR80BZoQMygAegUIARCEAQ',
         'year_made': 1993,
-        'sound': true
+        'sound': true,
+        'lens_id': 2
       }; 
       const data = await fakeRequest(app)
         .post('/moviecamerasII')
@@ -176,7 +180,8 @@ describe('app routes', () => {
           'model': '6080',
           'image': 'https://www.super8camera.com/images/nizo-6080.jpg',
           'year_made': 1980,
-          'sound': true
+          'sound': true,
+          'lens_id': 2
         };
       
       const data = await fakeRequest(app)

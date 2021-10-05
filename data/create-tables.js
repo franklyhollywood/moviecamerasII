@@ -16,15 +16,25 @@ async function run() {
                     id SERIAL PRIMARY KEY,
                     email VARCHAR(256) NOT NULL,
                     hash VARCHAR(512) NOT NULL
-                );           
+              ); 
+
+              CREATE TABLE lenses (
+                id SERIAL PRIMARY KEY NOT NULL,
+                lens_type VARCHAR(512) NOT NULL
+        
+          );
                 CREATE TABLE moviecamerasII (
                     id SERIAL PRIMARY KEY NOT NULL,
                     make VARCHAR(512) NOT NULL,
                     model VARCHAR(512) NOT NULL,
                     image VARCHAR(512) NOT NULL,
                     year_made INTEGER NOT NULL,
-                    sound BOOLEAN NOT NULL
-            );
+                    sound BOOLEAN NOT NULL,
+                    lens_id INTEGER NOT NULL REFERENCES lenses(id)
+
+              );
+            
+             
         `);
 
     console.log('create tables complete', getEmoji(), getEmoji(), getEmoji());
