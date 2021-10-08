@@ -98,6 +98,7 @@ describe('app routes', () => {
         'make': 'Beaulieu',
         'model': '9008S',
         'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
+        'lens_id': 1,
         'year_made': 1993,
         'sound': true,
         'lens_type': 'C-mount Lens'
@@ -251,7 +252,7 @@ describe('app routes', () => {
     });
 
 
-    test('returns one posted lens', async() => {
+    test('returns one post lens', async() => {
 
       const expectation =  
       
@@ -262,7 +263,8 @@ describe('app routes', () => {
       
         
       const data = await fakeRequest(app)
-        .get('/lenses/4')
+        .post('/lenses')
+        .send({ 'lens_type': 'Cannon mount' })
         .expect('Content-Type', /json/)
         .expect(200);
 
