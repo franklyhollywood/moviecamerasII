@@ -28,6 +28,8 @@ describe('app routes', () => {
       return client.end(done);
     });
 
+
+    //
     test('returns moviecameras', async() => {
 
       const expectation = [
@@ -87,8 +89,8 @@ describe('app routes', () => {
     });
 
 
-
-    test('returns one moviecameras', async() => {
+    //
+    test('returns one moviecamera', async() => {
 
       const expectation =  
       {
@@ -96,6 +98,7 @@ describe('app routes', () => {
         'make': 'Beaulieu',
         'model': '9008S',
         'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
+        'lens_id': 1,
         'year_made': 1993,
         'sound': true,
         'lens_type': 'C-mount Lens'
@@ -111,7 +114,7 @@ describe('app routes', () => {
 
     
 
-
+    //
     test('returns one edited moviecamera', async() => {
 
       const expectation =  
@@ -140,7 +143,7 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
     });
 
-
+    //
     test('returns one newly entered camera', async() => {
 
       const expectation =  
@@ -170,7 +173,8 @@ describe('app routes', () => {
 
       expect(data.body).toEqual(expectation);
     });
-
+    
+    //
     test('deletes one camera', async() => {
 
       const expectation =  
@@ -197,6 +201,77 @@ describe('app routes', () => {
       expect(data.body).toEqual(expectation);
       expect(deletedEntry.body).toEqual('');
     });
+
+    //
+    // test('returns one camera with lens type', async() => {
+
+    //   const expectation =  
+    //   {
+    //     'id': 1,
+    //     'make': 'Beaulieu',
+    //     'model': '9008S',
+    //     'image': 'https://i.pinimg.com/originals/d6/d5/d0/d6d5d0583a32a1dbfe50e3551729588c.jpg',
+    //     'year_made': 1993,
+    //     'sound': true,
+    //     'lens_type': 'C-mount Lens'
+    //   };
+        
+    //   const data = await fakeRequest(app)
+    //     .get('/moviecamerasII/1')
+    //     .expect('Content-Type', /json/)
+    //     .expect(200);
+
+    //   expect(data.body).toEqual(expectation);
+    // });
+
+    //
+    test('returns all lenses', async() => {
+
+      const expectation =  
+      [
+        {
+          'id': 1,
+          'lens_type': 'C-mount Lens'
+        },
+        {
+          'id': 2,
+          'lens_type': 'Fixed lens'
+        },
+        {
+          'id': 3,
+          'lens_type': 'Leica M Mount'
+        }
+      ];
+        
+      const data = await fakeRequest(app)
+        .get('/lenses/')
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+
+    test('returns one post lens', async() => {
+
+      const expectation =  
+      
+        {
+          'id': 4,
+          'lens_type': 'Cannon mount'
+        };
+      
+        
+      const data = await fakeRequest(app)
+        .post('/lenses')
+        .send({ 'lens_type': 'Cannon mount' })
+        .expect('Content-Type', /json/)
+        .expect(200);
+
+      expect(data.body).toEqual(expectation);
+    });
+
+
 
   });
 });
